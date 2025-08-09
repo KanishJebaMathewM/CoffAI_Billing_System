@@ -145,9 +145,30 @@ export const useStore = () => {
     }));
   }, []);
 
-  const getOrderTotal = useCallback(() => {
+  const getOrderSubtotal = useCallback(() => {
     return currentOrder.reduce((sum, item) => sum + item.totalPrice, 0);
   }, [currentOrder]);
+
+  const getTotalQuantity = useCallback(() => {
+    return currentOrder.reduce((sum, item) => sum + item.quantity, 0);
+  }, [currentOrder]);
+
+  const getApplicableDiscount = useCallback(() => {
+    const totalQuantity = getTotalQuantity();
+    const activeRules = discountRules.filter(rule => rule.isActive);
+
+    // Find the highest discount that applies
+    return activeRules
+      .filter(rule => totalQuantity >= rule.minQuantity)
+      .sort((a, b) => b.discountPercent - a.discountPercent)[0] || null;
+  }, [discountRules, getTotalQuantity]);
+
+  const getOrderTotal = useCallback(() => {
+    const subtotal = getOrderSubtotal();
+    const discount = getApplicableDiscount();
+    const discountAmount = discount ? (subtotal * discount.discountPercent) / 100 : 0;
+    return subtotal - discountAmount;
+  }, [getOrderSubtotal, getApplicableDiscount]);
 
   const finalizeBill = useCallback(async (customerData: Customer) => {
     const total = getOrderTotal();
