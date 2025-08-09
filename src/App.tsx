@@ -99,31 +99,35 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       <Header />
-      
+
       {/* Navigation */}
-      <div className="bg-white shadow-sm border-b">
+      <div className="bg-white shadow-lg border-b">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex space-x-6">
+            <div className="flex space-x-4">
               <button
                 onClick={() => setCurrentView('dashboard')}
-                className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
+                className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-semibold transition-all ${
                   currentView === 'dashboard'
-                    ? 'bg-amber-100 text-amber-700'
-                    : 'text-gray-600 hover:text-amber-600'
+                    ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-lg'
+                    : 'text-gray-600 hover:text-amber-600 hover:bg-amber-50'
                 }`}
               >
                 <ShoppingCart className="h-5 w-5" />
                 <span>Order Dashboard</span>
               </button>
               <button
-                onClick={() => setCurrentView('manage-milk')}
-                className="flex items-center space-x-2 px-4 py-2 rounded-lg text-gray-600 hover:text-amber-600 transition-colors"
+                onClick={() => setCurrentView('manage')}
+                className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-semibold transition-all ${
+                  currentView === 'manage'
+                    ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-lg'
+                    : 'text-gray-600 hover:text-amber-600 hover:bg-amber-50'
+                }`}
               >
                 <Settings className="h-5 w-5" />
-                <span>Manage Milk Types</span>
+                <span>Management Center</span>
               </button>
             </div>
             
