@@ -171,13 +171,20 @@ export const useStore = () => {
   }, [getOrderSubtotal, getApplicableDiscount]);
 
   const finalizeBill = useCallback(async (customerData: Customer) => {
-    const total = getOrderTotal();
+    const subtotal = getOrderSubtotal();
+    const appliedDiscount = getApplicableDiscount();
+    const discountAmount = appliedDiscount ? (subtotal * appliedDiscount.discountPercent) / 100 : 0;
+    const total = subtotal - discountAmount;
+
     const bill: Bill = {
       id: Date.now().toString(),
       customer: customerData,
       items: [...currentOrder],
+      subtotal,
+      discountAmount,
       total,
       date: new Date(),
+      appliedDiscount,
     };
 
     // Generate AI summary
@@ -187,7 +194,7 @@ export const useStore = () => {
     setCurrentBill(bill);
     setCustomer(customerData);
     return bill;
-  }, [currentOrder, getOrderTotal]);
+  }, [currentOrder, getOrderSubtotal, getApplicableDiscount]);
 
   const clearOrder = useCallback(() => {
     setCurrentOrder([]);
