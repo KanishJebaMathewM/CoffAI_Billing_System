@@ -50,20 +50,26 @@ export const Dashboard: React.FC<DashboardProps> = ({
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-6">
       {/* Coffee Selection */}
       <div className="space-y-4">
-        <h2 className="text-2xl font-bold text-gray-800 mb-6">Coffee Selection</h2>
+        <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+          <span className="mr-3">☕</span>
+          Coffee Selection
+        </h2>
         <div className="grid gap-3">
           {coffeeTypes.map(coffee => (
             <button
               key={coffee.id}
               onClick={() => setSelectedCoffee(coffee)}
-              className={`p-4 rounded-lg border-2 transition-all ${
+              className={`p-5 rounded-xl border-2 transition-all transform hover:scale-105 ${
                 selectedCoffee?.id === coffee.id
-                  ? 'border-amber-500 bg-amber-50 shadow-md'
-                  : 'border-gray-200 hover:border-amber-300 hover:bg-amber-25'
+                  ? 'border-amber-500 bg-gradient-to-r from-amber-50 to-orange-50 shadow-lg'
+                  : 'border-gray-200 hover:border-amber-300 hover:bg-amber-25 bg-white shadow-md hover:shadow-lg'
               }`}
             >
               <div className="flex justify-between items-center">
-                <span className="font-semibold text-gray-800">{coffee.name}</span>
+                <div className="text-left">
+                  <span className="font-semibold text-gray-800 block">{coffee.name}</span>
+                  <span className="text-sm text-gray-500">Premium Coffee</span>
+                </div>
                 <span className="text-lg font-bold text-amber-600">${coffee.price.toFixed(2)}</span>
               </div>
             </button>
