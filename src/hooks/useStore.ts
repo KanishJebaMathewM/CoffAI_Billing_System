@@ -232,9 +232,9 @@ export const useStore = () => {
 };
 
 const generateAISummary = (bill: Bill): string => {
-  const { customer, items, total } = bill;
+  const { customer, items, subtotal, discountAmount, total, appliedDiscount } = bill;
   const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
-  
+
   const itemDescriptions = items.map(item => {
     let description = `${item.quantity} ${item.coffee.name}`;
     if (item.milk) description += ` with ${item.milk.name}`;
@@ -247,6 +247,14 @@ const generateAISummary = (bill: Bill): string => {
 
   const greeting = customer.name ? `Hello ${customer.name}!` : 'Hello!';
   const orderSummary = itemDescriptions.join(', ');
-  
-  return `${greeting} You've ordered ${orderSummary}. Your total is $${total.toFixed(2)}. Thank you for visiting CoffAI! ☕`;
+
+  let summary = `${greeting} You've ordered ${orderSummary}.`;
+
+  if (appliedDiscount && discountAmount > 0) {
+    summary += ` Great news! You qualified for our "${appliedDiscount.name}" discount (${appliedDiscount.discountPercent}% off), saving you $${discountAmount.toFixed(2)}.`;
+  }
+
+  summary += ` Your total is $${total.toFixed(2)}. Thank you for visiting CoffAI! ☕`;
+
+  return summary;
 };
