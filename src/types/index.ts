@@ -30,13 +30,24 @@ export interface Customer {
   mobile: string;
 }
 
+export interface DiscountRule {
+  id: string;
+  name: string;
+  minQuantity: number;
+  discountPercent: number;
+  isActive: boolean;
+}
+
 export interface Bill {
   id: string;
   customer: Customer;
   items: OrderItem[];
+  subtotal: number;
+  discountAmount: number;
   total: number;
   date: Date;
   aiSummary?: string;
+  appliedDiscount?: DiscountRule;
 }
 
-export type ViewMode = 'dashboard' | 'manage-milk' | 'bill';
+export type ViewMode = 'dashboard' | 'manage' | 'bill';
