@@ -167,6 +167,10 @@ function App() {
               items={currentOrder}
               onRemoveItem={removeOrderItem}
               onUpdateQuantity={updateOrderItemQuantity}
+              subtotal={getOrderSubtotal()}
+              totalQuantity={getTotalQuantity()}
+              appliedDiscount={getApplicableDiscount()}
+              discountAmount={getApplicableDiscount() ? (getOrderSubtotal() * getApplicableDiscount()!.discountPercent) / 100 : 0}
               total={getOrderTotal()}
             />
           </div>
