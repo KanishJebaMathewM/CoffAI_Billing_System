@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { CoffeeType, MilkType, AddOn, OrderItem, Customer, Bill } from '../types';
+import { CoffeeType, MilkType, AddOn, OrderItem, Customer, Bill, DiscountRule } from '../types';
 
 const initialCoffeeTypes: CoffeeType[] = [
   { id: '1', name: 'Espresso', price: 3.50 },
