@@ -58,14 +58,24 @@ function App() {
     }
   };
 
-  if (currentView === 'manage-milk') {
+  if (currentView === 'manage') {
     return (
       <div className="min-h-screen bg-gray-100">
         <Header />
-        <MilkTypeManager
+        <ManagementCenter
+          coffeeTypes={coffeeTypes}
           milkTypes={milkTypes}
+          addOns={addOns}
+          discountRules={discountRules}
+          onAddCoffeeType={addCoffeeType}
+          onRemoveCoffeeType={removeCoffeeType}
           onAddMilkType={addMilkType}
           onRemoveMilkType={removeMilkType}
+          onAddAddOn={addAddOn}
+          onRemoveAddOn={removeAddOn}
+          onAddDiscountRule={addDiscountRule}
+          onRemoveDiscountRule={removeDiscountRule}
+          onUpdateDiscountRule={updateDiscountRule}
           onBack={() => setCurrentView('dashboard')}
         />
       </div>
