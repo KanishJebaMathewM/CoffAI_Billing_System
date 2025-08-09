@@ -3,7 +3,7 @@ import { Settings, ShoppingCart, Receipt } from 'lucide-react';
 import { Header } from './components/Header';
 import { Dashboard } from './components/Dashboard';
 import { OrderSummary } from './components/OrderSummary';
-import { MilkTypeManager } from './components/MilkTypeManager';
+import { ManagementCenter } from './components/ManagementCenter';
 import { BillView } from './components/BillView';
 import { CustomerForm } from './components/CustomerForm';
 import { useStore } from './hooks/useStore';
