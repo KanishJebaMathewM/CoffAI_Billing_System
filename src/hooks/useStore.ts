@@ -38,9 +38,10 @@ const initialDiscountRules: DiscountRule[] = [
 ];
 
 export const useStore = () => {
-  const [coffeeTypes] = useState<CoffeeType[]>(initialCoffeeTypes);
+  const [coffeeTypes, setCoffeeTypes] = useState<CoffeeType[]>(initialCoffeeTypes);
   const [milkTypes, setMilkTypes] = useState<MilkType[]>(initialMilkTypes);
-  const [addOns] = useState<AddOn[]>(initialAddOns);
+  const [addOns, setAddOns] = useState<AddOn[]>(initialAddOns);
+  const [discountRules, setDiscountRules] = useState<DiscountRule[]>(initialDiscountRules);
   const [currentOrder, setCurrentOrder] = useState<OrderItem[]>([]);
   const [customer, setCustomer] = useState<Customer>({ name: '', mobile: '' });
   const [currentBill, setCurrentBill] = useState<Bill | null>(null);
