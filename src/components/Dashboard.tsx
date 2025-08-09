@@ -79,57 +79,63 @@ export const Dashboard: React.FC<DashboardProps> = ({
 
       {/* Milk & Add-ons */}
       <div className="space-y-6">
-        <div>
-          <h3 className="text-xl font-bold text-gray-800 mb-4">Milk Type</h3>
-          <div className="space-y-2">
+        <div className="bg-white rounded-xl shadow-lg p-6">
+          <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
+            <span className="mr-2">🥛</span>
+            Milk Type
+          </h3>
+          <div className="space-y-3">
             <button
               onClick={() => setSelectedMilk(undefined)}
-              className={`w-full p-3 rounded-lg border-2 transition-all ${
+              className={`w-full p-4 rounded-lg border-2 transition-all ${
                 !selectedMilk
-                  ? 'border-amber-500 bg-amber-50'
-                  : 'border-gray-200 hover:border-amber-300'
+                  ? 'border-amber-500 bg-gradient-to-r from-amber-50 to-orange-50 shadow-md'
+                  : 'border-gray-200 hover:border-amber-300 bg-white hover:shadow-md'
               }`}
             >
-              <div className="flex justify-between">
-                <span>No Milk</span>
-                <span className="font-bold">$0.00</span>
+              <div className="flex justify-between items-center">
+                <span className="font-medium">No Milk</span>
+                <span className="font-bold text-amber-600">$0.00</span>
               </div>
             </button>
             {milkTypes.map(milk => (
               <button
                 key={milk.id}
                 onClick={() => setSelectedMilk(milk)}
-                className={`w-full p-3 rounded-lg border-2 transition-all ${
+                className={`w-full p-4 rounded-lg border-2 transition-all ${
                   selectedMilk?.id === milk.id
-                    ? 'border-amber-500 bg-amber-50'
-                    : 'border-gray-200 hover:border-amber-300'
+                    ? 'border-amber-500 bg-gradient-to-r from-amber-50 to-orange-50 shadow-md'
+                    : 'border-gray-200 hover:border-amber-300 bg-white hover:shadow-md'
                 }`}
               >
-                <div className="flex justify-between">
-                  <span>{milk.name}</span>
-                  <span className="font-bold">${milk.price.toFixed(2)}</span>
+                <div className="flex justify-between items-center">
+                  <span className="font-medium">{milk.name}</span>
+                  <span className="font-bold text-amber-600">${milk.price.toFixed(2)}</span>
                 </div>
               </button>
             ))}
           </div>
         </div>
 
-        <div>
-          <h3 className="text-xl font-bold text-gray-800 mb-4">Add-ons</h3>
-          <div className="space-y-2">
+        <div className="bg-white rounded-xl shadow-lg p-6">
+          <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
+            <span className="mr-2">🍯</span>
+            Add-ons
+          </h3>
+          <div className="grid grid-cols-1 gap-3">
             {addOns.map(addOn => (
               <button
                 key={addOn.id}
                 onClick={() => handleAddOnToggle(addOn)}
-                className={`w-full p-3 rounded-lg border-2 transition-all ${
+                className={`w-full p-4 rounded-lg border-2 transition-all ${
                   selectedAddOns.find(a => a.id === addOn.id)
-                    ? 'border-amber-500 bg-amber-50'
-                    : 'border-gray-200 hover:border-amber-300'
+                    ? 'border-amber-500 bg-gradient-to-r from-amber-50 to-orange-50 shadow-md'
+                    : 'border-gray-200 hover:border-amber-300 bg-white hover:shadow-md'
                 }`}
               >
-                <div className="flex justify-between">
-                  <span>{addOn.name}</span>
-                  <span className="font-bold">${addOn.price.toFixed(2)}</span>
+                <div className="flex justify-between items-center">
+                  <span className="font-medium">{addOn.name}</span>
+                  <span className="font-bold text-amber-600">${addOn.price.toFixed(2)}</span>
                 </div>
               </button>
             ))}
