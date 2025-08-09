@@ -59,6 +59,56 @@ export const useStore = () => {
     setMilkTypes(prev => prev.filter(milk => milk.id !== id));
   }, []);
 
+  // Coffee management
+  const addCoffeeType = useCallback((name: string, price: number) => {
+    const newCoffeeType: CoffeeType = {
+      id: Date.now().toString(),
+      name,
+      price,
+    };
+    setCoffeeTypes(prev => [...prev, newCoffeeType]);
+  }, []);
+
+  const removeCoffeeType = useCallback((id: string) => {
+    setCoffeeTypes(prev => prev.filter(coffee => coffee.id !== id));
+  }, []);
+
+  // Add-on management
+  const addAddOn = useCallback((name: string, price: number) => {
+    const newAddOn: AddOn = {
+      id: Date.now().toString(),
+      name,
+      price,
+    };
+    setAddOns(prev => [...prev, newAddOn]);
+  }, []);
+
+  const removeAddOn = useCallback((id: string) => {
+    setAddOns(prev => prev.filter(addon => addon.id !== id));
+  }, []);
+
+  // Discount management
+  const addDiscountRule = useCallback((name: string, minQuantity: number, discountPercent: number) => {
+    const newRule: DiscountRule = {
+      id: Date.now().toString(),
+      name,
+      minQuantity,
+      discountPercent,
+      isActive: true,
+    };
+    setDiscountRules(prev => [...prev, newRule]);
+  }, []);
+
+  const removeDiscountRule = useCallback((id: string) => {
+    setDiscountRules(prev => prev.filter(rule => rule.id !== id));
+  }, []);
+
+  const updateDiscountRule = useCallback((id: string, updates: Partial<DiscountRule>) => {
+    setDiscountRules(prev => prev.map(rule =>
+      rule.id === id ? { ...rule, ...updates } : rule
+    ));
+  }, []);
+
   const addOrderItem = useCallback((
     coffee: CoffeeType,
     milk: MilkType | undefined,
