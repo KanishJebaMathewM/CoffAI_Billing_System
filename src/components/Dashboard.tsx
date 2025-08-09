@@ -144,45 +144,54 @@ export const Dashboard: React.FC<DashboardProps> = ({
       </div>
 
       {/* Order Summary & Actions */}
-      <div className="bg-gray-50 p-6 rounded-lg">
-        <h3 className="text-xl font-bold text-gray-800 mb-4">Current Selection</h3>
-        
+      <div className="bg-white rounded-xl shadow-lg p-6">
+        <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+          <span className="mr-2">🛒</span>
+          Current Selection
+        </h3>
+
         {selectedCoffee ? (
-          <div className="space-y-4">
-            <div className="bg-white p-4 rounded-lg">
-              <h4 className="font-semibold text-lg">{selectedCoffee.name}</h4>
+          <div className="space-y-6">
+            <div className="bg-gradient-to-r from-gray-50 to-gray-100 p-5 rounded-xl border border-gray-200">
+              <h4 className="font-bold text-lg text-gray-800 mb-2">{selectedCoffee.name}</h4>
               {selectedMilk && (
-                <p className="text-gray-600">+ {selectedMilk.name}</p>
-              )}
-              {selectedAddOns.length > 0 && (
-                <p className="text-gray-600">
-                  + {selectedAddOns.map(a => a.name).join(', ')}
+                <p className="text-gray-600 flex items-center">
+                  <span className="mr-2">🥛</span>
+                  {selectedMilk.name}
                 </p>
               )}
+              {selectedAddOns.length > 0 && (
+                <div className="mt-2">
+                  <p className="text-gray-600 flex items-center">
+                    <span className="mr-2">🍯</span>
+                    {selectedAddOns.map(a => a.name).join(', ')}
+                  </p>
+                </div>
+              )}
             </div>
 
-            <div className="flex items-center justify-between bg-white p-4 rounded-lg">
-              <span className="font-semibold">Quantity</span>
-              <div className="flex items-center space-x-3">
-                <button
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="p-2 bg-gray-200 rounded-full hover:bg-gray-300"
-                >
-                  <Minus className="h-4 w-4" />
-                </button>
-                <span className="text-xl font-bold w-8 text-center">{quantity}</span>
-                <button
-                  onClick={() => setQuantity(quantity + 1)}
-                  className="p-2 bg-gray-200 rounded-full hover:bg-gray-300"
-                >
-                  <Plus className="h-4 w-4" />
-                </button>
+            <div className="bg-gradient-to-r from-amber-50 to-orange-50 p-5 rounded-xl border border-amber-200">
+              <div className="flex items-center justify-between mb-4">
+                <span className="font-semibold text-gray-800">Quantity</span>
+                <div className="flex items-center space-x-4 bg-white px-4 py-2 rounded-lg shadow-sm">
+                  <button
+                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    className="p-2 bg-amber-100 hover:bg-amber-200 rounded-full transition-colors"
+                  >
+                    <Minus className="h-4 w-4 text-amber-700" />
+                  </button>
+                  <span className="text-xl font-bold w-8 text-center text-amber-700">{quantity}</span>
+                  <button
+                    onClick={() => setQuantity(quantity + 1)}
+                    className="p-2 bg-amber-100 hover:bg-amber-200 rounded-full transition-colors"
+                  >
+                    <Plus className="h-4 w-4 text-amber-700" />
+                  </button>
+                </div>
               </div>
-            </div>
 
-            <div className="bg-amber-100 p-4 rounded-lg">
               <div className="flex justify-between items-center">
-                <span className="text-lg font-semibold">Total Price</span>
+                <span className="text-lg font-semibold text-gray-800">Item Total</span>
                 <span className="text-2xl font-bold text-amber-600">
                   ${calculateItemPrice().toFixed(2)}
                 </span>
@@ -191,15 +200,18 @@ export const Dashboard: React.FC<DashboardProps> = ({
 
             <button
               onClick={handleAddToOrder}
-              className="w-full bg-amber-600 hover:bg-amber-700 text-white py-3 px-4 rounded-lg font-semibold transition-colors"
+              className="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white py-4 px-6 rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
             >
               Add to Order
             </button>
           </div>
         ) : (
-          <p className="text-gray-500 text-center py-8">
-            Select a coffee to start your order
-          </p>
+          <div className="text-center py-12">
+            <div className="text-6xl mb-4">☕</div>
+            <p className="text-gray-500 text-lg">
+              Select a coffee to start your order
+            </p>
+          </div>
         )}
       </div>
     </div>
