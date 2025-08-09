@@ -141,7 +141,7 @@ function App() {
                 </div>
                 <button
                   onClick={() => setShowCustomerForm(true)}
-                  className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center space-x-2"
+                  className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white px-8 py-3 rounded-lg font-semibold transition-all flex items-center space-x-2 shadow-lg hover:shadow-xl"
                 >
                   <Receipt className="h-5 w-5" />
                   <span>Finalize Order</span>
