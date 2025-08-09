@@ -31,6 +31,12 @@ const initialAddOns: AddOn[] = [
   { id: '8', name: 'Extra Hot', price: 0.00 },
 ];
 
+const initialDiscountRules: DiscountRule[] = [
+  { id: '1', name: 'Bulk Order (5+ items)', minQuantity: 5, discountPercent: 10, isActive: true },
+  { id: '2', name: 'Large Order (10+ items)', minQuantity: 10, discountPercent: 15, isActive: true },
+  { id: '3', name: 'Party Pack (20+ items)', minQuantity: 20, discountPercent: 20, isActive: true },
+];
+
 export const useStore = () => {
   const [coffeeTypes] = useState<CoffeeType[]>(initialCoffeeTypes);
   const [milkTypes, setMilkTypes] = useState<MilkType[]>(initialMilkTypes);
