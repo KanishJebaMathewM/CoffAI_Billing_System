@@ -102,6 +102,24 @@ export const BillView: React.FC<BillViewProps> = ({
               </tbody>
               <tfoot className="bg-amber-50">
                 <tr>
+                  <td colSpan={3} className="px-4 py-3 text-right text-sm font-semibold text-gray-800">
+                    Subtotal:
+                  </td>
+                  <td className="px-4 py-3 text-right text-sm font-semibold text-gray-800">
+                    ${bill.subtotal.toFixed(2)}
+                  </td>
+                </tr>
+                {bill.appliedDiscount && bill.discountAmount > 0 && (
+                  <tr>
+                    <td colSpan={3} className="px-4 py-3 text-right text-sm font-semibold text-green-700">
+                      Discount ({bill.appliedDiscount.name} - {bill.appliedDiscount.discountPercent}%):
+                    </td>
+                    <td className="px-4 py-3 text-right text-sm font-semibold text-green-700">
+                      -${bill.discountAmount.toFixed(2)}
+                    </td>
+                  </tr>
+                )}
+                <tr>
                   <td colSpan={3} className="px-4 py-4 text-right text-lg font-bold text-gray-800">
                     Grand Total:
                   </td>
